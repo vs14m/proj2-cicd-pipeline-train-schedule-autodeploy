@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vs14m-deploy
+  labels:
+    app: vs14m-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vs14m-app
+  template:
+    metadata:
+      labels:
+        app: vs14m-app
+    spec:
+      containers:
+      - name: vs14m-container
+        image: vs14m/proj2:v1.0
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vs14m-np-service
+  labels:
+    app: vs14m-app
+spec:
+  selector:
+    app: vs14m-app
+
+  type: NodePort
+  ports:
+  - nodePort: 31000
+    port: 8080
+    targetPort: 8080
