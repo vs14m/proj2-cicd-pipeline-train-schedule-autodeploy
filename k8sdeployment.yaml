@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: vs14m-container
-        image: vs14m/proj2:v1.0
+        image: vs14m/proj2:latest
         ports:
         - containerPort: 8080
 ---
